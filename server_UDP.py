@@ -1,12 +1,14 @@
 import socket
 
 def servidor_udp(porta):
-    # Cria o socket UDP
+    # Cria um socket UDP (SOCK_DGRAM)
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as servidor_socket:
-        servidor_socket.bind(('', porta))
+        servidor_socket.bind(('', porta))  # Associa o socket à porta
         print("Servidor UDP escutando na porta", porta)
         
         while True:
-            # Recebe dados do cliente
-            dados, endereco_cliente = servidor_socket.recvfrom(1024)
+            dados, endereco_cliente = servidor_socket.recvfrom(1024)  # Recebe pacotes
             print(f"Dados recebidos de {endereco_cliente}: {dados.decode('utf-8')}")
+
+# Inicia o servidor UDP na porta 5001
+servidor_udp(5001)
