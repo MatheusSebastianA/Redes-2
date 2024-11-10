@@ -2,26 +2,24 @@ import socket
 import time
 
 def cliente_tcp(ip_servidor, porta):
-    # Define o endereço do servidor
     endereco_servidor = (ip_servidor, porta)
 
-    # Cria o socket TCP
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as cliente_socket:
-        cliente_socket.connect(endereco_servidor)  # Conecta ao servidor
+        cliente_socket.connect(endereco_servidor)  # Conexão já faz o processo SYN/SYN ACK/ACK
         print("Conectado ao servidor TCP.")
 
-        # Envia dados e mede o tempo
-        dados = b"Exemplo de dados para envio via TCP"
+        dados = b"Oi\n"
         start_time = time.time()
-        
-        # Enviar dados várias vezes para medir a taxa de transferência
-        for _ in range(1000):  # Envia os dados 1000 vezes, por exemplo
+
+        for _ in range(100):  # Envia os dados 100 vezes
             cliente_socket.sendall(dados)
-        
+
+            # Aguarda a confirmação do servidor
+            resposta = cliente_socket.recv(1024)
+            
+
         end_time = time.time()
         print("Dados enviados.")
-        
-        # Calcular e exibir a taxa de transferência
         tempo_total = end_time - start_time
         print(f"Tempo total: {tempo_total} segundos.")
 
