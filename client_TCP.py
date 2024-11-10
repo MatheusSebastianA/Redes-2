@@ -25,5 +25,7 @@ def cliente_tcp(ip_servidor, porta):
         tempo_total = end_time - start_time
         print(f"Tempo total: {tempo_total} segundos.")
 
+        cliente_socket.close()
+        print("Conexão com o servidor encerrada pelo cliente")
 # Executa o cliente
 cliente_tcp("192.168.5.137", 5001)

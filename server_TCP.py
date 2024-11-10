@@ -17,6 +17,8 @@ def servidor_tcp(porta):
 
                 # Envia uma resposta de volta ao cliente (confirmação de recebimento)
                 conn.sendall(b"Dados recebidos com sucesso!")
-
+            
+            conn.close()
+            print("Conexão com o cliente encerrada pelo servidor")
 # Executa o servidor
 servidor_tcp(5001)
