@@ -8,7 +8,6 @@ def servidor_udp(porta):
         
         while True:
             dados, endereco_cliente = servidor_socket.recvfrom(1024)  # Recebe pacotes
-            print(f"Dados recebidos de {endereco_cliente}: {dados.decode('utf-8')}")
 
 # Inicia o servidor UDP na porta 5001
 servidor_udp(5001)
